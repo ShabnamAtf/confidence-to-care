@@ -30,7 +30,7 @@ Data: a small, synthetic demo bank for end-to-end runs is included. No PHI/PII.
 <summary><b>Repository structure</b></summary>
 
 <div dir="ltr">
-
+```text
 .
 ├─ configs/
 │   ├─ experiment.yml                # seeds, sampling K, paths, figure toggles
