@@ -25,36 +25,45 @@ Audit logs (JSONL/CSV): rule firings, cited spans, final care decision
 Data: a small, synthetic demo bank for end-to-end runs is included. No PHI/PII.
 
 2) Directory layout (proposed)
+
 <details>
 <summary><b>Repository structure</b></summary>
 
 <div dir="ltr">
 
-```text
 .
+├─ configs/
+│   ├─ experiment.yml                # seeds, sampling K, paths, figure toggles
+│   ├─ policy.yml                    # τ0, τ1, σ0, κmin, duty-to-warn toggles
+│   ├─ triage_mapping.yml            # Care-0..3 → ESI/CTAS/NEWS2 bands
+├─ data/
+│   ├─ demo_bank.jsonl               # synthetic QA/triage items (+ paraphrases)
+│   └─ red_flags.jsonl               # synthetic duty-to-warn cases
+├─ signals/
+│   ├─ extract_signals.py            # aggregates token-level probs → metrics
+│   └─ explain_spans.py              # SHAP span extraction
 ├─ policy/
-│  ├─ rules.pl          # Prolog policy (thresholds, duty-to-warn)
-│  └─ loader.pl         # JSONL → Prolog facts
+│   ├─ rules.pl                      # Prolog policy (thresholds, duty-to-warn)
+│   └─ loader.pl                     # JSONL → Prolog facts
 ├─ scripts/
-│  ├─ run_demo.py       # one-click end-to-end demo
-│  ├─ batch_eval.py     # four care levels; writes metrics/plots
-│  ├─ score_calibration.py   # ECE, Brier, NLL; reliability diagrams
-│  ├─ make_figures.py   # calibration, radar, tables
-│  └─ export_audit.py   # JSONL traces → readable CSV
-├─ outputs/             # created on first run
-│  ├─ audit_traces.jsonl
-│  ├─ condition_summary.csv
-│  ├─ calib_curve.png
-│  ├─ radar_perf.png
-│  └─ coverage_risk.png
-└─ requirements.txt
+│   ├─ run_demo.py                   # one-click end-to-end demo
+│   ├─ batch_eval.py                 # four care levels; writes metrics/plots
+│   ├─ score_calibration.py          # ECE, Brier, NLL; reliability diagrams
+│   ├─ make_figures.py               # calibration, radar, tables
+│   └─ export_audit.py               # JSONL traces → readable CSV
+├─ outputs/                          # created on first run
+│   ├─ audit_traces.jsonl
+│   ├─ condition_summary.csv
+│   ├─ calib_curve.png
+│   ├─ radar_perf.png
+│   └─ coverage_risk.png
+├─ requirements.txt
+└─ README.md
 ```
 
 </div>
 </details>
-
-
-
+```
 3) Installation
 
 Python ≥ 3.10 and SWI-Prolog (for the rules engine).
