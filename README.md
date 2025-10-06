@@ -14,14 +14,9 @@
 ## 2) Directory layout (proposed)
 
 <details>
-<summary><b>Repository structure</b></summary>
+  <summary><b>Repository structure</b></summary>
 
-<br />
-
-<div dir="ltr">
-
-```text
-.
+  <pre><code>.
 ├─ configs/
 │   ├─ experiment.yml                # seeds, sampling K, paths, figure toggles
 │   ├─ policy.yml                    # tau0, tau1, sigma0, kappa_min, toggles
@@ -49,9 +44,7 @@
 │   └─ coverage_risk.png
 ├─ requirements.txt
 └─ README.md
-```
-
-</div>
+  </code></pre>
 </details>
 
 ## 3) Installation
